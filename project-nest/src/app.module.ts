@@ -9,6 +9,20 @@ import { Account } from './accounts/entities/account.entity';
 @Module({
   imports: [
     SequelizeModule.forRoot({
+      dialect: process.env.DB_CONNECTION as any,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_HOST),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      autoLoadModels: true,
+      sync: {
+        alter: true,
+        //force: true,
+      },
+      models: [Order, Account],
+    }),
+    /* SequelizeModule.forRoot({
       dialect: 'sqlite',
       host: join(__dirname, 'database.sqlite'),
       autoLoadModels: true,
@@ -17,7 +31,7 @@ import { Account } from './accounts/entities/account.entity';
         //force: true,
       },
       models: [Order, Account],
-    }),
+    }), */
     OrdersModule,
     AccountsModule,
   ],

@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const path_1 = require("path");
 const order_entity_1 = require("./orders/entities/order.entity");
 const orders_module_1 = require("./orders/orders.module");
 const accounts_module_1 = require("./accounts/accounts.module");
@@ -20,8 +19,12 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             sequelize_1.SequelizeModule.forRoot({
-                dialect: 'sqlite',
-                host: (0, path_1.join)(__dirname, 'database.sqlite'),
+                dialect: process.env.DB_CONNECTION,
+                host: process.env.DB_HOST,
+                port: parseInt(process.env.DB_HOST),
+                username: process.env.DB_USERNAME,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_DATABASE,
                 autoLoadModels: true,
                 sync: {
                     alter: true,
