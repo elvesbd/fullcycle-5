@@ -21,7 +21,7 @@ let Order = class Order extends sequelize_typescript_1.Model {
 };
 __decorate([
     sequelize_typescript_1.PrimaryKey,
-    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUIDV4, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.UUID, defaultValue: sequelize_typescript_1.DataType.UUIDV4 }),
     __metadata("design:type", String)
 ], Order.prototype, "id", void 0);
 __decorate([
@@ -42,7 +42,7 @@ __decorate([
 ], Order.prototype, "status", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => account_entity_1.Account),
-    (0, sequelize_typescript_1.Column)({ allowNull: false, type: sequelize_typescript_1.DataType.UUIDV4 }),
+    (0, sequelize_typescript_1.Column)({ allowNull: false, type: sequelize_typescript_1.DataType.UUID }),
     __metadata("design:type", String)
 ], Order.prototype, "account_id", void 0);
 __decorate([

@@ -5,9 +5,11 @@ import { Order } from './orders/entities/order.entity';
 import { OrdersModule } from './orders/orders.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { Account } from './accounts/entities/account.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: process.env.DB_CONNECTION as any,
       host: process.env.DB_HOST,

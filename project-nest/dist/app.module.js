@@ -13,11 +13,13 @@ const order_entity_1 = require("./orders/entities/order.entity");
 const orders_module_1 = require("./orders/orders.module");
 const accounts_module_1 = require("./accounts/accounts.module");
 const account_entity_1 = require("./accounts/entities/account.entity");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot(),
             sequelize_1.SequelizeModule.forRoot({
                 dialect: process.env.DB_CONNECTION,
                 host: process.env.DB_HOST,
