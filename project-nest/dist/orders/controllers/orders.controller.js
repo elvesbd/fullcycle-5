@@ -28,13 +28,13 @@ let OrdersController = class OrdersController {
         return this.ordersService.findAll();
     }
     findOne(id) {
-        return this.ordersService.findOne(+id);
+        return this.ordersService.findOne(id);
     }
     update(id, updateOrderDto) {
-        return this.ordersService.update(+id, updateOrderDto);
+        return this.ordersService.update(id, updateOrderDto);
     }
     remove(id) {
-        return this.ordersService.remove(+id);
+        return this.ordersService.remove(id);
     }
 };
 __decorate([
