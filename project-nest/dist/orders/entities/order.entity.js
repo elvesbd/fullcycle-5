@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Order = exports.OrderStatus = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
+const account_entity_1 = require("../../accounts/entities/account.entity");
 var OrderStatus;
 (function (OrderStatus) {
     OrderStatus["PENDING"] = "pending";
@@ -39,6 +40,15 @@ __decorate([
     (0, sequelize_typescript_1.Column)({ allowNull: false, defaultValue: OrderStatus.PENDING }),
     __metadata("design:type", String)
 ], Order.prototype, "status", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => account_entity_1.Account),
+    (0, sequelize_typescript_1.Column)({ allowNull: false, type: sequelize_typescript_1.DataType.UUIDV4 }),
+    __metadata("design:type", String)
+], Order.prototype, "account_id", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => account_entity_1.Account),
+    __metadata("design:type", account_entity_1.Account)
+], Order.prototype, "account", void 0);
 Order = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'orders',

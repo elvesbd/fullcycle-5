@@ -23,5 +23,5 @@ export class Account extends Model {
     allowNull: false,
     defaultValue: () => Math.random().toString(36).slice(2),
   })
-  tokens: string;
+  token: string;
 }

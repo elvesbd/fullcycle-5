@@ -28,7 +28,7 @@ __decorate([
         defaultValue: () => Math.random().toString(36).slice(2),
     }),
     __metadata("design:type", String)
-], Account.prototype, "tokens", void 0);
+], Account.prototype, "token", void 0);
 Account = __decorate([
     (0, sequelize_typescript_1.Table)({
         tableName: 'accounts',

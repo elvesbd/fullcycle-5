@@ -23,6 +23,10 @@ AppModule = __decorate([
                 dialect: 'sqlite',
                 host: (0, path_1.join)(__dirname, 'database.sqlite'),
                 autoLoadModels: true,
+                sync: {
+                    alter: true,
+                    force: true,
+                },
                 models: [order_entity_1.Order, account_entity_1.Account],
             }),
             orders_module_1.OrdersModule,
