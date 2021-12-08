@@ -19,7 +19,7 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            config_1.ConfigModule.forRoot(),
+            config_1.ConfigModule.forRoot({ isGlobal: true }),
             sequelize_1.SequelizeModule.forRoot({
                 dialect: process.env.DB_CONNECTION,
                 host: process.env.DB_HOST,

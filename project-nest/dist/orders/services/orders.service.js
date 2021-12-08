@@ -19,12 +19,23 @@ const sequelize_2 = require("sequelize");
 const account_storage_service_1 = require("../../accounts/account-storage/account-storage.service");
 const order_entity_1 = require("../entities/order.entity");
 let OrdersService = class OrdersService {
-    constructor(orderModel, accountStorageService) {
+    constructor(orderModel, accountStorageService, kafkaProducer) {
         this.orderModel = orderModel;
         this.accountStorageService = accountStorageService;
+        this.kafkaProducer = kafkaProducer;
     }
-    create(createOrderDto) {
-        return this.orderModel.create(Object.assign(Object.assign({}, createOrderDto), { account_id: this.accountStorageService.account.id }));
+    async create(createOrderDto) {
+        const order = await this.orderModel.create(Object.assign(Object.assign({}, createOrderDto), { account_id: this.accountStorageService.account.id }));
+        this.kafkaProducer.send({
+            topic: 'transactions',
+            messages: [
+                {
+                    key: 'transactions',
+                    value: JSON.stringify(Object.assign(Object.assign({}, createOrderDto), order.toJSON())),
+                },
+            ],
+        });
+        return order;
     }
     findAll() {
         return this.orderModel.findAll({
@@ -54,7 +65,8 @@ let OrdersService = class OrdersService {
 OrdersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, sequelize_1.InjectModel)(order_entity_1.Order)),
-    __metadata("design:paramtypes", [Object, account_storage_service_1.AccountStorageService])
+    __param(2, (0, common_1.Inject)('KAFKA_PRODUCER')),
+    __metadata("design:paramtypes", [Object, account_storage_service_1.AccountStorageService, Object])
 ], OrdersService);
 exports.OrdersService = OrdersService;
 //# sourceMappingURL=orders.service.js.map

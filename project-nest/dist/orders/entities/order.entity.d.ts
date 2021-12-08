@@ -2,7 +2,8 @@ import { Model } from 'sequelize-typescript';
 import { Account } from 'src/accounts/entities/account.entity';
 export declare enum OrderStatus {
     PENDING = "pending",
-    APPROVED = "approved"
+    APPROVED = "approved",
+    ERROR = "error"
 }
 export declare class Order extends Model {
     id: string;
