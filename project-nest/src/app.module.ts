@@ -3,6 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { join } from 'path';
 import { Order } from './orders/entities/order.entity';
 import { OrdersModule } from './orders/orders.module';
+import { AccountsModule } from './accounts/accounts.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { OrdersModule } from './orders/orders.module';
       models: [Order],
     }),
     OrdersModule,
+    AccountsModule,
   ],
   controllers: [],
   providers: [],

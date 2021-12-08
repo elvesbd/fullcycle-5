@@ -12,70 +12,69 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrdersController = void 0;
+exports.AccountsController = void 0;
 const common_1 = require("@nestjs/common");
-const create_order_dto_1 = require("../dto/create-order.dto");
-const update_order_dto_1 = require("../dto/update-order.dto");
-const orders_service_1 = require("../services/orders.service");
-let OrdersController = class OrdersController {
-    constructor(ordersService) {
-        this.ordersService = ordersService;
+const accounts_service_1 = require("./accounts.service");
+const create_account_dto_1 = require("./dto/create-account.dto");
+const update_account_dto_1 = require("./dto/update-account.dto");
+let AccountsController = class AccountsController {
+    constructor(accountsService) {
+        this.accountsService = accountsService;
     }
-    create(createOrderDto) {
-        return this.ordersService.create(createOrderDto);
+    create(createAccountDto) {
+        return this.accountsService.create(createAccountDto);
     }
     findAll() {
-        return this.ordersService.findAll();
+        return this.accountsService.findAll();
     }
     findOne(id) {
-        return this.ordersService.findOne(id);
+        return this.accountsService.findOne(+id);
     }
-    update(id, updateOrderDto) {
-        return this.ordersService.update(id, updateOrderDto);
+    update(id, updateAccountDto) {
+        return this.accountsService.update(+id, updateAccountDto);
     }
     remove(id) {
-        return this.ordersService.remove(id);
+        return this.accountsService.remove(+id);
     }
 };
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_order_dto_1.CreateOrderDto]),
+    __metadata("design:paramtypes", [create_account_dto_1.CreateAccountDto]),
     __metadata("design:returntype", void 0)
-], OrdersController.prototype, "create", null);
+], AccountsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], OrdersController.prototype, "findAll", null);
+], AccountsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], OrdersController.prototype, "findOne", null);
+], AccountsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_order_dto_1.UpdateOrderDto]),
+    __metadata("design:paramtypes", [String, update_account_dto_1.UpdateAccountDto]),
     __metadata("design:returntype", void 0)
-], OrdersController.prototype, "update", null);
+], AccountsController.prototype, "update", null);
 __decorate([
-    (0, common_1.HttpCode)(204),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], OrdersController.prototype, "remove", null);
-OrdersController = __decorate([
-    (0, common_1.Controller)('orders'),
-    __metadata("design:paramtypes", [orders_service_1.OrdersService])
-], OrdersController);
-exports.OrdersController = OrdersController;
-//# sourceMappingURL=orders.controller.js.map
+], AccountsController.prototype, "remove", null);
+AccountsController = __decorate([
+    (0, common_1.Controller)('accounts'),
+    __metadata("design:paramtypes", [accounts_service_1.AccountsService])
+], AccountsController);
+exports.AccountsController = AccountsController;
+//# sourceMappingURL=accounts.controller.js.map

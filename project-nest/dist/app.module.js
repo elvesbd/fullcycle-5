@@ -12,6 +12,7 @@ const sequelize_1 = require("@nestjs/sequelize");
 const path_1 = require("path");
 const order_entity_1 = require("./orders/entities/order.entity");
 const orders_module_1 = require("./orders/orders.module");
+const accounts_module_1 = require("./accounts/accounts.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,6 +25,7 @@ AppModule = __decorate([
                 models: [order_entity_1.Order],
             }),
             orders_module_1.OrdersModule,
+            accounts_module_1.AccountsModule,
         ],
         controllers: [],
         providers: [],
