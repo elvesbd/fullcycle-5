@@ -7,7 +7,7 @@ export class TokenGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const token = request.headers?.('x-token') as string;
+    const token = request.headers?.['x-token'] as string;
 
     if (token) {
       try {

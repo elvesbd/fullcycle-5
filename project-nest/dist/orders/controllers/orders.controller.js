@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrdersController = void 0;
 const common_1 = require("@nestjs/common");
+const token_guard_1 = require("../../accounts/token.guard");
 const create_order_dto_1 = require("../dto/create-order.dto");
 const update_order_dto_1 = require("../dto/update-order.dto");
 const orders_service_1 = require("../services/orders.service");
@@ -74,6 +75,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "remove", null);
 OrdersController = __decorate([
+    (0, common_1.UseGuards)(token_guard_1.TokenGuard),
     (0, common_1.Controller)('orders'),
     __metadata("design:paramtypes", [orders_service_1.OrdersService])
 ], OrdersController);

@@ -14,7 +14,7 @@ import { Account } from './accounts/entities/account.entity';
       autoLoadModels: true,
       sync: {
         alter: true,
-        force: true,
+        //force: true,
       },
       models: [Order, Account],
     }),

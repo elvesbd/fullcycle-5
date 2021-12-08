@@ -21,6 +21,7 @@ AccountsModule = __decorate([
         imports: [sequelize_1.SequelizeModule.forFeature([account_entity_1.Account])],
         controllers: [accounts_controller_1.AccountsController],
         providers: [accounts_service_1.AccountsService, account_storage_service_1.AccountStorageService, token_guard_1.TokenGuard],
+        exports: [account_storage_service_1.AccountStorageService],
     })
 ], AccountsModule);
 exports.AccountsModule = AccountsModule;

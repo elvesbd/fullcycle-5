@@ -25,7 +25,6 @@ AppModule = __decorate([
                 autoLoadModels: true,
                 sync: {
                     alter: true,
-                    force: true,
                 },
                 models: [order_entity_1.Order, account_entity_1.Account],
             }),

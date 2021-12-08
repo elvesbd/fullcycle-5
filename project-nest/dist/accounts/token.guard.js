@@ -19,7 +19,7 @@ let TokenGuard = class TokenGuard {
     async canActivate(context) {
         var _a;
         const request = context.switchToHttp().getRequest();
-        const token = (_a = request.headers) === null || _a === void 0 ? void 0 : _a.call(request, 'x-token');
+        const token = (_a = request.headers) === null || _a === void 0 ? void 0 : _a['x-token'];
         if (token) {
             try {
                 await this.accountStorageService.setBy(token);
