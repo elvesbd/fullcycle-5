@@ -13,6 +13,7 @@ const path_1 = require("path");
 const order_entity_1 = require("./orders/entities/order.entity");
 const orders_module_1 = require("./orders/orders.module");
 const accounts_module_1 = require("./accounts/accounts.module");
+const account_entity_1 = require("./accounts/entities/account.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -22,7 +23,7 @@ AppModule = __decorate([
                 dialect: 'sqlite',
                 host: (0, path_1.join)(__dirname, 'database.sqlite'),
                 autoLoadModels: true,
-                models: [order_entity_1.Order],
+                models: [order_entity_1.Order, account_entity_1.Account],
             }),
             orders_module_1.OrdersModule,
             accounts_module_1.AccountsModule,

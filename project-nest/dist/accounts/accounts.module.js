@@ -8,14 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AccountsModule = void 0;
 const common_1 = require("@nestjs/common");
-const accounts_service_1 = require("./accounts.service");
-const accounts_controller_1 = require("./accounts.controller");
+const sequelize_1 = require("@nestjs/sequelize");
+const accounts_controller_1 = require("./controllers/accounts.controller");
+const account_entity_1 = require("./entities/account.entity");
+const accounts_service_1 = require("./services/accounts.service");
 let AccountsModule = class AccountsModule {
 };
 AccountsModule = __decorate([
     (0, common_1.Module)({
+        imports: [sequelize_1.SequelizeModule.forFeature([account_entity_1.Account])],
         controllers: [accounts_controller_1.AccountsController],
-        providers: [accounts_service_1.AccountsService]
+        providers: [accounts_service_1.AccountsService],
     })
 ], AccountsModule);
 exports.AccountsModule = AccountsModule;
