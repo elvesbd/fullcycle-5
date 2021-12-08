@@ -12,13 +12,14 @@ const sequelize_1 = require("@nestjs/sequelize");
 const accounts_controller_1 = require("./controllers/accounts.controller");
 const account_entity_1 = require("./entities/account.entity");
 const accounts_service_1 = require("./services/accounts.service");
+const account_storage_service_1 = require("./account-storage/account-storage.service");
 let AccountsModule = class AccountsModule {
 };
 AccountsModule = __decorate([
     (0, common_1.Module)({
         imports: [sequelize_1.SequelizeModule.forFeature([account_entity_1.Account])],
         controllers: [accounts_controller_1.AccountsController],
-        providers: [accounts_service_1.AccountsService],
+        providers: [accounts_service_1.AccountsService, account_storage_service_1.AccountStorageService],
     })
 ], AccountsModule);
 exports.AccountsModule = AccountsModule;

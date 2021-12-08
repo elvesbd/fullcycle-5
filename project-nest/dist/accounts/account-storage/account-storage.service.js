@@ -12,46 +12,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AccountsService = void 0;
+exports.AccountStorageService = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
-const sequelize_2 = require("sequelize");
-const sequelize_3 = require("sequelize");
 const account_entity_1 = require("../entities/account.entity");
-let AccountsService = class AccountsService {
-    constructor(orderModel) {
-        this.orderModel = orderModel;
+const accounts_service_1 = require("../services/accounts.service");
+let AccountStorageService = class AccountStorageService {
+    constructor(accountService) {
+        this.accountService = accountService;
+        this._account = null;
     }
-    create(createAccountDto) {
-        return this.orderModel.create(createAccountDto);
+    get account() {
+        return this._account;
     }
-    findAll() {
-        return this.orderModel.findAll();
-    }
-    findOne(idOrToken) {
-        return this.orderModel.findOne({
-            where: {
-                [sequelize_3.Op.or]: {
-                    id: idOrToken,
-                    token: idOrToken,
-                },
-            },
-            rejectOnEmpty: new sequelize_2.EmptyResultError(`Account with ID/Token ${idOrToken} not found`),
-        });
-    }
-    async update(id, updateAccountDto) {
-        const account = await this.findOne(id);
-        return account.update(updateAccountDto);
-    }
-    async remove(id) {
-        const account = await this.findOne(id);
-        return account.destroy();
+    async setBy(token) {
+        this._account = await this.accountService.findOne(token);
     }
 };
-AccountsService = __decorate([
-    (0, common_1.Injectable)(),
+AccountStorageService = __decorate([
+    (0, common_1.Injectable)({ scope: common_1.Scope.REQUEST }),
     __param(0, (0, sequelize_1.InjectModel)(account_entity_1.Account)),
-    __metadata("design:paramtypes", [Object])
-], AccountsService);
-exports.AccountsService = AccountsService;
-//# sourceMappingURL=accounts.service.js.map
+    __metadata("design:paramtypes", [accounts_service_1.AccountsService])
+], AccountStorageService);
+exports.AccountStorageService = AccountStorageService;
+//# sourceMappingURL=account-storage.service.js.map

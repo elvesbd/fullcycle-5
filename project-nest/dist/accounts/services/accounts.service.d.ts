@@ -6,7 +6,7 @@ export declare class AccountsService {
     constructor(orderModel: typeof Account);
     create(createAccountDto: CreateAccountDto): Promise<Account>;
     findAll(): Promise<Account[]>;
-    findOne(id: string): Promise<Account>;
+    findOne(idOrToken: string): Promise<Account>;
     update(id: string, updateAccountDto: UpdateAccountDto): Promise<Account>;
     remove(id: string): Promise<void>;
 }
