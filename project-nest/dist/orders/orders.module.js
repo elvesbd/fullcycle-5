@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrdersModule = void 0;
 const common_1 = require("@nestjs/common");
 const sequelize_1 = require("@nestjs/sequelize");
+const accounts_module_1 = require("../accounts/accounts.module");
 const orders_controller_1 = require("./controllers/orders.controller");
 const order_entity_1 = require("./entities/order.entity");
 const orders_service_1 = require("./services/orders.service");
@@ -16,7 +17,7 @@ let OrdersModule = class OrdersModule {
 };
 OrdersModule = __decorate([
     (0, common_1.Module)({
-        imports: [sequelize_1.SequelizeModule.forFeature([order_entity_1.Order])],
+        imports: [sequelize_1.SequelizeModule.forFeature([order_entity_1.Order]), accounts_module_1.AccountsModule],
         controllers: [orders_controller_1.OrdersController],
         providers: [orders_service_1.OrdersService],
     })
