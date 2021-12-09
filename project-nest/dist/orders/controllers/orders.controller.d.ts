@@ -10,5 +10,5 @@ export declare class OrdersController {
     findOne(id: string): Promise<import("../entities/order.entity").Order>;
     update(id: string, updateOrderDto: UpdateOrderDto): Promise<import("../entities/order.entity").Order>;
     remove(id: string): Promise<void>;
-    consumerUpdateStatus(message: KafkaMessage): void;
+    consumerUpdateStatus(message: KafkaMessage): Promise<void>;
 }

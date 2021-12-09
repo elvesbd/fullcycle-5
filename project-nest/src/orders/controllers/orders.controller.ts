@@ -34,7 +34,7 @@ export class OrdersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(id);
+    return this.ordersService.findOneUsingAccount(id);
   }
 
   @Patch(':id')
@@ -49,11 +49,11 @@ export class OrdersController {
   }
 
   @MessagePattern('transactions_result')
-  consumerUpdateStatus(@Payload() message: KafkaMessage) {
+  async consumerUpdateStatus(@Payload() message: KafkaMessage) {
     const data = message.value as any;
 
     const { id, status } = data as { id: string; status: OrderStatus };
 
-    this.ordersService.update(id, { status });
+    await this.ordersService.update(id, { status });
   }
 }

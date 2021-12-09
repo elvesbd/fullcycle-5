@@ -10,6 +10,7 @@ export declare class OrdersService {
     constructor(orderModel: typeof Order, accountStorageService: AccountStorageService, kafkaProducer: Producer);
     create(createOrderDto: CreateOrderDto): Promise<Order>;
     findAll(): Promise<Order[]>;
+    findOneUsingAccount(id: string): Promise<Order>;
     findOne(id: string): Promise<Order>;
     update(id: string, updateOrderDto: UpdateOrderDto): Promise<Order>;
     remove(id: string): Promise<void>;

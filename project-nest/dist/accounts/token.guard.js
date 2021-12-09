@@ -18,6 +18,9 @@ let TokenGuard = class TokenGuard {
     }
     async canActivate(context) {
         var _a;
+        if (context.getType() != 'http') {
+            return true;
+        }
         const request = context.switchToHttp().getRequest();
         const token = (_a = request.headers) === null || _a === void 0 ? void 0 : _a['x-token'];
         if (token) {

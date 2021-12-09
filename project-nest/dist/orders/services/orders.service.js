@@ -44,7 +44,7 @@ let OrdersService = class OrdersService {
             },
         });
     }
-    findOne(id) {
+    findOneUsingAccount(id) {
         return this.orderModel.findOne({
             where: {
                 id,
@@ -53,12 +53,18 @@ let OrdersService = class OrdersService {
             rejectOnEmpty: new sequelize_2.EmptyResultError(`Order with ID ${id} not found`),
         });
     }
+    findOne(id) {
+        return this.orderModel.findByPk(id);
+    }
     async update(id, updateOrderDto) {
-        const order = await this.findOne(id);
+        const account = this.accountStorageService.account;
+        const order = await (account
+            ? this.findOneUsingAccount(id)
+            : this.findOne(id));
         return order.update(updateOrderDto);
     }
     async remove(id) {
-        const order = await this.findOne(id);
+        const order = await this.findOneUsingAccount(id);
         return order.destroy();
     }
 };

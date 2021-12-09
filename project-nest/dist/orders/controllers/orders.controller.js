@@ -30,7 +30,7 @@ let OrdersController = class OrdersController {
         return this.ordersService.findAll();
     }
     findOne(id) {
-        return this.ordersService.findOne(id);
+        return this.ordersService.findOneUsingAccount(id);
     }
     update(id, updateOrderDto) {
         return this.ordersService.update(id, updateOrderDto);
@@ -38,10 +38,10 @@ let OrdersController = class OrdersController {
     remove(id) {
         return this.ordersService.remove(id);
     }
-    consumerUpdateStatus(message) {
+    async consumerUpdateStatus(message) {
         const data = message.value;
         const { id, status } = data;
-        this.ordersService.update(id, { status });
+        await this.ordersService.update(id, { status });
     }
 };
 __decorate([
@@ -85,7 +85,7 @@ __decorate([
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], OrdersController.prototype, "consumerUpdateStatus", null);
 OrdersController = __decorate([
     (0, common_1.UseGuards)(token_guard_1.TokenGuard),
