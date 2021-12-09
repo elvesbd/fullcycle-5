@@ -12,7 +12,7 @@ import { Account } from 'src/accounts/entities/account.entity';
 export enum OrderStatus {
   PENDING = 'pending',
   APPROVED = 'approved',
-  ERROR = 'error',
+  REJECTED = 'rejected',
 }
 
 @Table({

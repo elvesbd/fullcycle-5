@@ -3,7 +3,7 @@ import { Account } from 'src/accounts/entities/account.entity';
 export declare enum OrderStatus {
     PENDING = "pending",
     APPROVED = "approved",
-    ERROR = "error"
+    REJECTED = "rejected"
 }
 export declare class Order extends Model {
     id: string;

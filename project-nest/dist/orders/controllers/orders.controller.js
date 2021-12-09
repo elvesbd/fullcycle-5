@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrdersController = void 0;
 const common_1 = require("@nestjs/common");
+const microservices_1 = require("@nestjs/microservices");
 const token_guard_1 = require("../../accounts/token.guard");
 const create_order_dto_1 = require("../dto/create-order.dto");
 const update_order_dto_1 = require("../dto/update-order.dto");
@@ -36,6 +37,11 @@ let OrdersController = class OrdersController {
     }
     remove(id) {
         return this.ordersService.remove(id);
+    }
+    consumerUpdateStatus(message) {
+        const data = message.value;
+        const { id, status } = data;
+        this.ordersService.update(id, { status });
     }
 };
 __decorate([
@@ -74,6 +80,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "remove", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('transactions_result'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OrdersController.prototype, "consumerUpdateStatus", null);
 OrdersController = __decorate([
     (0, common_1.UseGuards)(token_guard_1.TokenGuard),
     (0, common_1.Controller)('orders'),

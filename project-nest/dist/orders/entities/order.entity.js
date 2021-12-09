@@ -16,7 +16,7 @@ var OrderStatus;
 (function (OrderStatus) {
     OrderStatus["PENDING"] = "pending";
     OrderStatus["APPROVED"] = "approved";
-    OrderStatus["ERROR"] = "error";
+    OrderStatus["REJECTED"] = "rejected";
 })(OrderStatus = exports.OrderStatus || (exports.OrderStatus = {}));
 let Order = class Order extends sequelize_typescript_1.Model {
 };
